@@ -1,0 +1,74 @@
+syntax = "proto3";
+
+package resource;
+
+import "google/api/annotations.proto";
+
+service ResourceService {
+  rpc Read(ReadRequest) returns (ReadResponse) {
+    option (google.api.http) = {
+      get: "/v2/{id.type.group}/{id.type.version}/{id.type.type}/{id.name}"
+    };
+  }
+  rpc Write(WriteRequest) returns (WriteResponse) {
+    option (google.api.http) = {
+      put: "/v2/{resource.id.type.group}/{resource.id.type.version}/{resource.id.type.type}/{resource.id.name}"
+    };
+  }
+  rpc List(ListRequest) returns (ListResponse) {
+    option (google.api.http) = {
+      get: "/v2/{type.group}/{type.version}/{type.type}"
+    };
+  }
+  rpc Delete(DeleteRequest) returns (DeleteResponse) {
+    option (google.api.http) = {
+      delete: "/v2/{id.type.group}/{id.type.version}/{id.type.type}/{id.name}"
+    };
+  }
+}
+
+message ResourceType {
+  string group = 1;
+  string version = 2;
+  string type = 3;
+}
+
+message ResourceID {
+  ResourceType type = 1;
+  string name = 2;
+}
+
+message Resource {
+  ResourceID id = 1;
+  int32 data = 2;
+}
+
+message ReadRequest {
+  ResourceID id = 1;
+}
+
+message ReadResponse {
+  Resource resource = 1;
+}
+
+message ListRequest {
+  ResourceType type = 1;
+}
+
+message ListResponse {
+  repeated Resource resource = 1;
+}
+
+message WriteRequest {
+  Resource resource = 1;
+}
+
+message WriteResponse {
+  Resource resource = 1;
+}
+
+message DeleteRequest {
+  ResourceID id = 1;
+}
+
+message DeleteResponse {}

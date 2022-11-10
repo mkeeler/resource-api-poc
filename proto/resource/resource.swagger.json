@@ -1,0 +1,307 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "resource/resource.proto",
+    "version": "version not set"
+  },
+  "tags": [
+    {
+      "name": "resource.ResourceService"
+    }
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/v2/{id.type.group}/{id.type.version}/{id.type.type}/{id.name}": {
+      "get": {
+        "operationId": "ResourceService_Read",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/resource.ReadResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id.type.group",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "id.type.version",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "id.type.type",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "id.name",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "resource.ResourceService"
+        ]
+      },
+      "delete": {
+        "operationId": "ResourceService_Delete",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/resource.DeleteResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id.type.group",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "id.type.version",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "id.type.type",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "id.name",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "resource.ResourceService"
+        ]
+      }
+    },
+    "/v2/{resource.id.type.group}/{resource.id.type.version}/{resource.id.type.type}/{resource.id.name}": {
+      "put": {
+        "operationId": "ResourceService_Write",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/resource.WriteResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "resource.id.type.group",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "resource.id.type.version",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "resource.id.type.type",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "resource.id.name",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "resource.data",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "tags": [
+          "resource.ResourceService"
+        ]
+      }
+    },
+    "/v2/{type.group}/{type.version}/{type.type}": {
+      "get": {
+        "operationId": "ResourceService_List",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/resource.ListResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "type.group",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "type.version",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "type.type",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "resource.ResourceService"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "google.protobuf.Any": {
+      "type": "object",
+      "properties": {
+        "@type": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": {}
+    },
+    "google.rpc.Status": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        },
+        "details": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/google.protobuf.Any"
+          }
+        }
+      }
+    },
+    "resource.DeleteResponse": {
+      "type": "object"
+    },
+    "resource.ListResponse": {
+      "type": "object",
+      "properties": {
+        "resource": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/resource.Resource"
+          }
+        }
+      }
+    },
+    "resource.ReadResponse": {
+      "type": "object",
+      "properties": {
+        "resource": {
+          "$ref": "#/definitions/resource.Resource"
+        }
+      }
+    },
+    "resource.Resource": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "$ref": "#/definitions/resource.ResourceID"
+        },
+        "data": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "resource.ResourceID": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "$ref": "#/definitions/resource.ResourceType"
+        },
+        "name": {
+          "type": "string"
+        }
+      }
+    },
+    "resource.ResourceType": {
+      "type": "object",
+      "properties": {
+        "group": {
+          "type": "string"
+        },
+        "version": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string"
+        }
+      }
+    },
+    "resource.WriteResponse": {
+      "type": "object",
+      "properties": {
+        "resource": {
+          "$ref": "#/definitions/resource.Resource"
+        }
+      }
+    }
+  }
+}
