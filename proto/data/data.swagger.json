@@ -1,0 +1,141 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "data/data.proto",
+    "version": "version not set"
+  },
+  "tags": [
+    {
+      "name": "data.DataService"
+    }
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/v2/g/1/t/{name}/data": {
+      "post": {
+        "operationId": "DataService_SetData",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/data.SetDataResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "name",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "data",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/data.Data"
+            }
+          }
+        ],
+        "tags": [
+          "data.DataService"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "data.Data": {
+      "type": "object",
+      "properties": {
+        "value": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "data.SetDataResponse": {
+      "type": "object",
+      "properties": {
+        "resource": {
+          "$ref": "#/definitions/resource.Resource"
+        }
+      }
+    },
+    "google.protobuf.Any": {
+      "type": "object",
+      "properties": {
+        "@type": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": {}
+    },
+    "google.rpc.Status": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        },
+        "details": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/google.protobuf.Any"
+          }
+        }
+      }
+    },
+    "resource.Resource": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "$ref": "#/definitions/resource.ResourceID"
+        },
+        "data": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "resource.ResourceID": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "$ref": "#/definitions/resource.ResourceType"
+        },
+        "name": {
+          "type": "string"
+        }
+      }
+    },
+    "resource.ResourceType": {
+      "type": "object",
+      "properties": {
+        "group": {
+          "type": "string"
+        },
+        "version": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

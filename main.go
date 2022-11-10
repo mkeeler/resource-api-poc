@@ -11,6 +11,7 @@ import (
 	"google.golang.org/grpc/credentials/insecure"
 
 	"github.com/grpc-ecosystem/grpc-gateway/runtime"
+	datapb "github.com/mkeeler/resource-api-poc/proto/data"
 	resourcepb "github.com/mkeeler/resource-api-poc/proto/resource"
 )
 
@@ -29,6 +30,38 @@ func NewServer() *server {
 	return &server{
 		data: make(map[resourceType]map[string]*resourcepb.Resource),
 	}
+}
+
+var dataType = resourceType{group: "g", version: "1", rtype: "t"}
+
+func (s *server) SetData(ctx context.Context, req *datapb.SetDataRequest) (*datapb.SetDataResponse, error) {
+	if err := req.ValidateAll(); err != nil {
+		return nil, err
+	}
+
+	s.mu.Lock()
+	defer s.mu.Unlock()
+	tstore, ok := s.data[dataType]
+	if !ok {
+		tstore = make(map[string]*resourcepb.Resource)
+		s.data[dataType] = tstore
+	}
+
+	r := &resourcepb.Resource{
+		Id: &resourcepb.ResourceID{
+			Type: &resourcepb.ResourceType{
+				Group:   dataType.group,
+				Version: dataType.version,
+				Type:    dataType.rtype,
+			},
+			Name: req.GetName(),
+		},
+		Data: req.GetData().GetValue(),
+	}
+
+	tstore[req.GetName()] = r
+
+	return &datapb.SetDataResponse{Resource: r}, nil
 }
 
 func (s *server) Read(ctx context.Context, req *resourcepb.ReadRequest) (*resourcepb.ReadResponse, error) {
@@ -111,8 +144,10 @@ func main() {
 
 	// Create a gRPC server object
 	s := grpc.NewServer()
+	appServer := NewServer()
 	// Attach the Greeter service to the server
-	resourcepb.RegisterResourceServiceServer(s, NewServer())
+	resourcepb.RegisterResourceServiceServer(s, appServer)
+	datapb.RegisterDataServiceServer(s, appServer)
 	// Serve gRPC Server
 	log.Println("Serving gRPC on 0.0.0.0:1234")
 	go func() {
@@ -138,6 +173,10 @@ func main() {
 		log.Fatalln("Failed to register gateway:", err)
 	}
 
+	err = datapb.RegisterDataServiceHandler(context.Background(), gwmux, conn)
+	if err != nil {
+		log.Fatalln("Failed to register gateway:", err)
+	}
 	gwServer := &http.Server{
 		Addr:    ":4321",
 		Handler: gwmux,

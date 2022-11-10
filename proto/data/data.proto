@@ -1,0 +1,29 @@
+syntax = "proto3";
+
+package data;
+
+import "google/api/annotations.proto";
+import "resource/resource.proto";
+import "validate/validate.proto";
+
+message Data {
+  int32 value = 1;
+}
+
+message SetDataRequest {
+  string name = 1;
+  Data data = 2;
+}
+
+message SetDataResponse {
+  resource.Resource resource = 1;
+}
+
+service DataService {
+  rpc SetData(SetDataRequest) returns (SetDataResponse) {
+    option (google.api.http) = {
+      post: "/v2/g/1/t/{name}/data"
+      body: "data"
+    };
+  }
+}
