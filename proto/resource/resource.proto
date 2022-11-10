@@ -3,6 +3,7 @@ syntax = "proto3";
 package resource;
 
 import "google/api/annotations.proto";
+import "validate/validate.proto";
 
 service ResourceService {
   rpc Read(ReadRequest) returns (ReadResponse) {
@@ -13,6 +14,7 @@ service ResourceService {
   rpc Write(WriteRequest) returns (WriteResponse) {
     option (google.api.http) = {
       put: "/v2/{resource.id.type.group}/{resource.id.type.version}/{resource.id.type.type}/{resource.id.name}"
+      body: "resource"
     };
   }
   rpc List(ListRequest) returns (ListResponse) {
@@ -28,14 +30,14 @@ service ResourceService {
 }
 
 message ResourceType {
-  string group = 1;
-  string version = 2;
-  string type = 3;
+  string group = 1 [(validate.rules).string.min_len = 1];
+  string version = 2 [(validate.rules).string.min_len = 1];
+  string type = 3 [(validate.rules).string.min_len = 1];
 }
 
 message ResourceID {
   ResourceType type = 1;
-  string name = 2;
+  string name = 2 [(validate.rules).string.min_len = 1];
 }
 
 message Resource {
@@ -44,7 +46,7 @@ message Resource {
 }
 
 message ReadRequest {
-  ResourceID id = 1;
+  ResourceID id = 1 [(validate.rules).message.required = true];
 }
 
 message ReadResponse {
@@ -52,15 +54,15 @@ message ReadResponse {
 }
 
 message ListRequest {
-  ResourceType type = 1;
+  ResourceType type = 1 [(validate.rules).message.required = true];
 }
 
 message ListResponse {
-  repeated Resource resource = 1;
+  repeated Resource resources = 1;
 }
 
 message WriteRequest {
-  Resource resource = 1;
+  Resource resource = 1 [(validate.rules).message.required = true];
 }
 
 message WriteResponse {
@@ -68,7 +70,7 @@ message WriteResponse {
 }
 
 message DeleteRequest {
-  ResourceID id = 1;
+  ResourceID id = 1 [(validate.rules).message.required = true];
 }
 
 message DeleteResponse {}

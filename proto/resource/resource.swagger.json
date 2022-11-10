@@ -153,11 +153,26 @@
             "type": "string"
           },
           {
-            "name": "resource.data",
-            "in": "query",
-            "required": false,
-            "type": "integer",
-            "format": "int32"
+            "name": "resource",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "object",
+                  "properties": {
+                    "type": {
+                      "type": "object"
+                    }
+                  }
+                },
+                "data": {
+                  "type": "integer",
+                  "format": "int32"
+                }
+              }
+            }
           }
         ],
         "tags": [
@@ -242,7 +257,7 @@
     "resource.ListResponse": {
       "type": "object",
       "properties": {
-        "resource": {
+        "resources": {
           "type": "array",
           "items": {
             "$ref": "#/definitions/resource.Resource"

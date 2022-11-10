@@ -3,6 +3,9 @@ managed:
   enabled: true
   go_package_prefix:
     default: github.com/mkeeler/resource-api-poc
+    except:
+      - buf.build/googleapis/googleapis
+      - buf.build/envoyproxy/protoc-gen-validate
 plugins:
   - name: go
     out: .
@@ -18,3 +21,6 @@ plugins:
   - name: openapiv2
     out: .
     opt: fqn_for_openapi_name=true,include_package_in_tags=true
+  - name: validate-go
+    out: .
+    opt: paths=source_relative

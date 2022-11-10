@@ -99,13 +99,17 @@ func request_ResourceService_Read_0(ctx context.Context, marshaler runtime.Marsh
 
 }
 
-var (
-	filter_ResourceService_Write_0 = &utilities.DoubleArray{Encoding: map[string]int{"resource": 0, "id": 1, "type": 2, "group": 3, "version": 4, "name": 5}, Base: []int{1, 13, 1, 2, 1, 4, 5, 0, 3, 0, 9, 8, 7, 0, 10, 10, 0}, Check: []int{0, 1, 2, 3, 4, 2, 6, 5, 7, 9, 2, 11, 12, 13, 2, 15, 16}}
-)
-
 func request_ResourceService_Write_0(ctx context.Context, marshaler runtime.Marshaler, client ResourceServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var protoReq WriteRequest
 	var metadata runtime.ServerMetadata
+
+	newReader, berr := utilities.IOReaderFactory(req.Body)
+	if berr != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", berr)
+	}
+	if err := marshaler.NewDecoder(newReader()).Decode(&protoReq.Resource); err != nil && err != io.EOF {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
 
 	var (
 		val string
@@ -156,13 +160,6 @@ func request_ResourceService_Write_0(ctx context.Context, marshaler runtime.Mars
 
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "resource.id.name", err)
-	}
-
-	if err := req.ParseForm(); err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
-	}
-	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_ResourceService_Write_0); err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
 	msg, err := client.Write(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
