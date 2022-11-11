@@ -11,6 +11,7 @@ import (
 	"google.golang.org/grpc/credentials/insecure"
 
 	"github.com/grpc-ecosystem/grpc-gateway/runtime"
+	grpcpipe "github.com/mkeeler/resource-api-poc/pkg/grpc-pipe"
 	datapb "github.com/mkeeler/resource-api-poc/proto/data"
 	resourcepb "github.com/mkeeler/resource-api-poc/proto/resource"
 )
@@ -154,13 +155,19 @@ func main() {
 		log.Fatalln(s.Serve(lis))
 	}()
 
+	pipeLn := grpcpipe.ListenPipe()
+	go func() {
+		log.Fatalln(s.Serve(pipeLn))
+	}()
+
 	// Create a client connection to the gRPC server we just started
 	// This is where the gRPC-Gateway proxies the requests
 	conn, err := grpc.DialContext(
 		context.Background(),
-		"0.0.0.0:1234",
+		"pipe",
 		grpc.WithBlock(),
 		grpc.WithTransportCredentials(insecure.NewCredentials()),
+		grpc.WithContextDialer(pipeLn.DialContextWithoutNetwork),
 	)
 	if err != nil {
 		log.Fatalln("Failed to dial server:", err)
