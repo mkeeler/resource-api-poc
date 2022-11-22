@@ -1,12 +1,12 @@
 {
   "swagger": "2.0",
   "info": {
-    "title": "data/data.proto",
+    "title": "data/v1alpha1/data.proto",
     "version": "version not set"
   },
   "tags": [
     {
-      "name": "data.DataService"
+      "name": "data.v1alpha1.DataService"
     }
   ],
   "consumes": [
@@ -23,7 +23,7 @@
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/data.SetDataResponse"
+              "$ref": "#/definitions/data.v1alpha1.SetDataResponse"
             }
           },
           "default": {
@@ -45,18 +45,18 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/data.Data"
+              "$ref": "#/definitions/data.v1alpha1.Data"
             }
           }
         ],
         "tags": [
-          "data.DataService"
+          "data.v1alpha1.DataService"
         ]
       }
     }
   },
   "definitions": {
-    "data.Data": {
+    "data.v1alpha1.Data": {
       "type": "object",
       "properties": {
         "value": {
@@ -65,11 +65,11 @@
         }
       }
     },
-    "data.SetDataResponse": {
+    "data.v1alpha1.SetDataResponse": {
       "type": "object",
       "properties": {
         "resource": {
-          "$ref": "#/definitions/resource.Resource"
+          "$ref": "#/definitions/resource.v1alpha1.Resource"
         }
       }
     },
@@ -100,11 +100,11 @@
         }
       }
     },
-    "resource.Resource": {
+    "resource.v1alpha1.Resource": {
       "type": "object",
       "properties": {
         "id": {
-          "$ref": "#/definitions/resource.ResourceID"
+          "$ref": "#/definitions/resource.v1alpha1.ResourceID"
         },
         "data": {
           "type": "integer",
@@ -112,18 +112,35 @@
         }
       }
     },
-    "resource.ResourceID": {
+    "resource.v1alpha1.ResourceID": {
       "type": "object",
       "properties": {
         "type": {
-          "$ref": "#/definitions/resource.ResourceType"
+          "$ref": "#/definitions/resource.v1alpha1.ResourceType"
+        },
+        "tenancy": {
+          "$ref": "#/definitions/resource.v1alpha1.ResourceTenancy"
         },
         "name": {
           "type": "string"
         }
       }
     },
-    "resource.ResourceType": {
+    "resource.v1alpha1.ResourceTenancy": {
+      "type": "object",
+      "properties": {
+        "namespace": {
+          "type": "string"
+        },
+        "peer": {
+          "type": "string"
+        },
+        "partition": {
+          "type": "string"
+        }
+      }
+    },
+    "resource.v1alpha1.ResourceType": {
       "type": "object",
       "properties": {
         "group": {
@@ -132,7 +149,7 @@
         "version": {
           "type": "string"
         },
-        "type": {
+        "kind": {
           "type": "string"
         }
       }

@@ -1,0 +1,3568 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "resource/v1alpha1/resource.proto",
+    "version": "version not set"
+  },
+  "tags": [
+    {
+      "name": "resource.v1alpha1.ResourceService"
+    }
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/v2/resource/{id.type.group}/{id.type.version}/{id.type.kind}/name/{id.name}": {
+      "get": {
+        "operationId": "ResourceService_Read",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/resource.v1alpha1.ReadResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id.type.group",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "id.type.version",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "id.type.kind",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "id.name",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "id.tenancy.namespace",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "id.tenancy.peer",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "id.tenancy.partition",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "resource.v1alpha1.ResourceService"
+        ]
+      },
+      "delete": {
+        "operationId": "ResourceService_Delete",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/resource.v1alpha1.DeleteResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id.type.group",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "id.type.version",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "id.type.kind",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "id.name",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "id.tenancy.namespace",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "id.tenancy.peer",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "id.tenancy.partition",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "resource.v1alpha1.ResourceService"
+        ]
+      }
+    },
+    "/v2/resource/{id.type.group}/{id.type.version}/{id.type.kind}/name/{id.name}/watch": {
+      "get": {
+        "operationId": "ResourceService_Watch",
+        "responses": {
+          "200": {
+            "description": "A successful response.(streaming responses)",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "result": {
+                  "$ref": "#/definitions/resource.v1alpha1.WatchResponse"
+                },
+                "error": {
+                  "$ref": "#/definitions/google.rpc.Status"
+                }
+              },
+              "title": "Stream result of resource.v1alpha1.WatchResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id.type.group",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "id.type.version",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "id.type.kind",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "id.name",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "id.tenancy.namespace",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "id.tenancy.peer",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "id.tenancy.partition",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "resource.v1alpha1.ResourceService"
+        ]
+      }
+    },
+    "/v2/resource/{id.type.group}/{id.type.version}/{id.type.kind}/namespace/{id.tenancy.namespace}/name/{id.name}": {
+      "get": {
+        "operationId": "ResourceService_Read3",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/resource.v1alpha1.ReadResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id.type.group",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "id.type.version",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "id.type.kind",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "id.tenancy.namespace",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "id.name",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "id.tenancy.peer",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "id.tenancy.partition",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "resource.v1alpha1.ResourceService"
+        ]
+      },
+      "delete": {
+        "operationId": "ResourceService_Delete3",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/resource.v1alpha1.DeleteResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id.type.group",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "id.type.version",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "id.type.kind",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "id.tenancy.namespace",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "id.name",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "id.tenancy.peer",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "id.tenancy.partition",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "resource.v1alpha1.ResourceService"
+        ]
+      }
+    },
+    "/v2/resource/{id.type.group}/{id.type.version}/{id.type.kind}/namespace/{id.tenancy.namespace}/name/{id.name}/watch": {
+      "get": {
+        "operationId": "ResourceService_Watch3",
+        "responses": {
+          "200": {
+            "description": "A successful response.(streaming responses)",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "result": {
+                  "$ref": "#/definitions/resource.v1alpha1.WatchResponse"
+                },
+                "error": {
+                  "$ref": "#/definitions/google.rpc.Status"
+                }
+              },
+              "title": "Stream result of resource.v1alpha1.WatchResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id.type.group",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "id.type.version",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "id.type.kind",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "id.tenancy.namespace",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "id.name",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "id.tenancy.peer",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "id.tenancy.partition",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "resource.v1alpha1.ResourceService"
+        ]
+      }
+    },
+    "/v2/resource/{id.type.group}/{id.type.version}/{id.type.kind}/namespace/{id.tenancy.namespace}/watch": {
+      "get": {
+        "operationId": "ResourceService_Watch11",
+        "responses": {
+          "200": {
+            "description": "A successful response.(streaming responses)",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "result": {
+                  "$ref": "#/definitions/resource.v1alpha1.WatchResponse"
+                },
+                "error": {
+                  "$ref": "#/definitions/google.rpc.Status"
+                }
+              },
+              "title": "Stream result of resource.v1alpha1.WatchResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id.type.group",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "id.type.version",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "id.type.kind",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "id.tenancy.namespace",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "id.tenancy.peer",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "id.tenancy.partition",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "id.name",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "resource.v1alpha1.ResourceService"
+        ]
+      }
+    },
+    "/v2/resource/{id.type.group}/{id.type.version}/{id.type.kind}/partition/{id.tenancy.partition}/name/{id.name}": {
+      "get": {
+        "operationId": "ResourceService_Read2",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/resource.v1alpha1.ReadResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id.type.group",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "id.type.version",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "id.type.kind",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "id.tenancy.partition",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "id.name",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "id.tenancy.namespace",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "id.tenancy.peer",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "resource.v1alpha1.ResourceService"
+        ]
+      },
+      "delete": {
+        "operationId": "ResourceService_Delete2",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/resource.v1alpha1.DeleteResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id.type.group",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "id.type.version",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "id.type.kind",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "id.tenancy.partition",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "id.name",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "id.tenancy.namespace",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "id.tenancy.peer",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "resource.v1alpha1.ResourceService"
+        ]
+      }
+    },
+    "/v2/resource/{id.type.group}/{id.type.version}/{id.type.kind}/partition/{id.tenancy.partition}/name/{id.name}/watch": {
+      "get": {
+        "operationId": "ResourceService_Watch2",
+        "responses": {
+          "200": {
+            "description": "A successful response.(streaming responses)",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "result": {
+                  "$ref": "#/definitions/resource.v1alpha1.WatchResponse"
+                },
+                "error": {
+                  "$ref": "#/definitions/google.rpc.Status"
+                }
+              },
+              "title": "Stream result of resource.v1alpha1.WatchResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id.type.group",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "id.type.version",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "id.type.kind",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "id.tenancy.partition",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "id.name",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "id.tenancy.namespace",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "id.tenancy.peer",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "resource.v1alpha1.ResourceService"
+        ]
+      }
+    },
+    "/v2/resource/{id.type.group}/{id.type.version}/{id.type.kind}/partition/{id.tenancy.partition}/namespace/{id.tenancy.namespace}/name/{id.name}": {
+      "get": {
+        "operationId": "ResourceService_Read5",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/resource.v1alpha1.ReadResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id.type.group",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "id.type.version",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "id.type.kind",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "id.tenancy.partition",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "id.tenancy.namespace",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "id.name",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "id.tenancy.peer",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "resource.v1alpha1.ResourceService"
+        ]
+      },
+      "delete": {
+        "operationId": "ResourceService_Delete5",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/resource.v1alpha1.DeleteResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id.type.group",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "id.type.version",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "id.type.kind",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "id.tenancy.partition",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "id.tenancy.namespace",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "id.name",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "id.tenancy.peer",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "resource.v1alpha1.ResourceService"
+        ]
+      }
+    },
+    "/v2/resource/{id.type.group}/{id.type.version}/{id.type.kind}/partition/{id.tenancy.partition}/namespace/{id.tenancy.namespace}/name/{id.name}/watch": {
+      "get": {
+        "operationId": "ResourceService_Watch5",
+        "responses": {
+          "200": {
+            "description": "A successful response.(streaming responses)",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "result": {
+                  "$ref": "#/definitions/resource.v1alpha1.WatchResponse"
+                },
+                "error": {
+                  "$ref": "#/definitions/google.rpc.Status"
+                }
+              },
+              "title": "Stream result of resource.v1alpha1.WatchResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id.type.group",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "id.type.version",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "id.type.kind",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "id.tenancy.partition",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "id.tenancy.namespace",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "id.name",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "id.tenancy.peer",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "resource.v1alpha1.ResourceService"
+        ]
+      }
+    },
+    "/v2/resource/{id.type.group}/{id.type.version}/{id.type.kind}/partition/{id.tenancy.partition}/namespace/{id.tenancy.namespace}/watch": {
+      "get": {
+        "operationId": "ResourceService_Watch13",
+        "responses": {
+          "200": {
+            "description": "A successful response.(streaming responses)",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "result": {
+                  "$ref": "#/definitions/resource.v1alpha1.WatchResponse"
+                },
+                "error": {
+                  "$ref": "#/definitions/google.rpc.Status"
+                }
+              },
+              "title": "Stream result of resource.v1alpha1.WatchResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id.type.group",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "id.type.version",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "id.type.kind",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "id.tenancy.partition",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "id.tenancy.namespace",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "id.tenancy.peer",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "id.name",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "resource.v1alpha1.ResourceService"
+        ]
+      }
+    },
+    "/v2/resource/{id.type.group}/{id.type.version}/{id.type.kind}/partition/{id.tenancy.partition}/peer/{id.tenancy.peer}/name/{id.name}": {
+      "get": {
+        "operationId": "ResourceService_Read6",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/resource.v1alpha1.ReadResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id.type.group",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "id.type.version",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "id.type.kind",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "id.tenancy.partition",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "id.tenancy.peer",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "id.name",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "id.tenancy.namespace",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "resource.v1alpha1.ResourceService"
+        ]
+      },
+      "delete": {
+        "operationId": "ResourceService_Delete6",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/resource.v1alpha1.DeleteResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id.type.group",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "id.type.version",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "id.type.kind",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "id.tenancy.partition",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "id.tenancy.peer",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "id.name",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "id.tenancy.namespace",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "resource.v1alpha1.ResourceService"
+        ]
+      }
+    },
+    "/v2/resource/{id.type.group}/{id.type.version}/{id.type.kind}/partition/{id.tenancy.partition}/peer/{id.tenancy.peer}/name/{id.name}/watch": {
+      "get": {
+        "operationId": "ResourceService_Watch6",
+        "responses": {
+          "200": {
+            "description": "A successful response.(streaming responses)",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "result": {
+                  "$ref": "#/definitions/resource.v1alpha1.WatchResponse"
+                },
+                "error": {
+                  "$ref": "#/definitions/google.rpc.Status"
+                }
+              },
+              "title": "Stream result of resource.v1alpha1.WatchResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id.type.group",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "id.type.version",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "id.type.kind",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "id.tenancy.partition",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "id.tenancy.peer",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "id.name",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "id.tenancy.namespace",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "resource.v1alpha1.ResourceService"
+        ]
+      }
+    },
+    "/v2/resource/{id.type.group}/{id.type.version}/{id.type.kind}/partition/{id.tenancy.partition}/peer/{id.tenancy.peer}/namespace/{id.tenancy.namespace}/name/{id.name}": {
+      "get": {
+        "operationId": "ResourceService_Read8",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/resource.v1alpha1.ReadResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id.type.group",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "id.type.version",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "id.type.kind",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "id.tenancy.partition",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "id.tenancy.peer",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "id.tenancy.namespace",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "id.name",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "resource.v1alpha1.ResourceService"
+        ]
+      },
+      "delete": {
+        "operationId": "ResourceService_Delete8",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/resource.v1alpha1.DeleteResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id.type.group",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "id.type.version",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "id.type.kind",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "id.tenancy.partition",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "id.tenancy.peer",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "id.tenancy.namespace",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "id.name",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "resource.v1alpha1.ResourceService"
+        ]
+      }
+    },
+    "/v2/resource/{id.type.group}/{id.type.version}/{id.type.kind}/partition/{id.tenancy.partition}/peer/{id.tenancy.peer}/namespace/{id.tenancy.namespace}/name/{id.name}/watch": {
+      "get": {
+        "operationId": "ResourceService_Watch8",
+        "responses": {
+          "200": {
+            "description": "A successful response.(streaming responses)",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "result": {
+                  "$ref": "#/definitions/resource.v1alpha1.WatchResponse"
+                },
+                "error": {
+                  "$ref": "#/definitions/google.rpc.Status"
+                }
+              },
+              "title": "Stream result of resource.v1alpha1.WatchResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id.type.group",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "id.type.version",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "id.type.kind",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "id.tenancy.partition",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "id.tenancy.peer",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "id.tenancy.namespace",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "id.name",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "resource.v1alpha1.ResourceService"
+        ]
+      }
+    },
+    "/v2/resource/{id.type.group}/{id.type.version}/{id.type.kind}/partition/{id.tenancy.partition}/peer/{id.tenancy.peer}/namespace/{id.tenancy.namespace}/watch": {
+      "get": {
+        "operationId": "ResourceService_Watch16",
+        "responses": {
+          "200": {
+            "description": "A successful response.(streaming responses)",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "result": {
+                  "$ref": "#/definitions/resource.v1alpha1.WatchResponse"
+                },
+                "error": {
+                  "$ref": "#/definitions/google.rpc.Status"
+                }
+              },
+              "title": "Stream result of resource.v1alpha1.WatchResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id.type.group",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "id.type.version",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "id.type.kind",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "id.tenancy.partition",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "id.tenancy.peer",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "id.tenancy.namespace",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "id.name",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "resource.v1alpha1.ResourceService"
+        ]
+      }
+    },
+    "/v2/resource/{id.type.group}/{id.type.version}/{id.type.kind}/partition/{id.tenancy.partition}/peer/{id.tenancy.peer}/watch": {
+      "get": {
+        "operationId": "ResourceService_Watch14",
+        "responses": {
+          "200": {
+            "description": "A successful response.(streaming responses)",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "result": {
+                  "$ref": "#/definitions/resource.v1alpha1.WatchResponse"
+                },
+                "error": {
+                  "$ref": "#/definitions/google.rpc.Status"
+                }
+              },
+              "title": "Stream result of resource.v1alpha1.WatchResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id.type.group",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "id.type.version",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "id.type.kind",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "id.tenancy.partition",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "id.tenancy.peer",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "id.tenancy.namespace",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "id.name",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "resource.v1alpha1.ResourceService"
+        ]
+      }
+    },
+    "/v2/resource/{id.type.group}/{id.type.version}/{id.type.kind}/partition/{id.tenancy.partition}/watch": {
+      "get": {
+        "operationId": "ResourceService_Watch10",
+        "responses": {
+          "200": {
+            "description": "A successful response.(streaming responses)",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "result": {
+                  "$ref": "#/definitions/resource.v1alpha1.WatchResponse"
+                },
+                "error": {
+                  "$ref": "#/definitions/google.rpc.Status"
+                }
+              },
+              "title": "Stream result of resource.v1alpha1.WatchResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id.type.group",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "id.type.version",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "id.type.kind",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "id.tenancy.partition",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "id.tenancy.namespace",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "id.tenancy.peer",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "id.name",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "resource.v1alpha1.ResourceService"
+        ]
+      }
+    },
+    "/v2/resource/{id.type.group}/{id.type.version}/{id.type.kind}/peer/{id.tenancy.peer}/name/{id.name}": {
+      "get": {
+        "operationId": "ResourceService_Read4",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/resource.v1alpha1.ReadResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id.type.group",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "id.type.version",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "id.type.kind",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "id.tenancy.peer",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "id.name",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "id.tenancy.namespace",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "id.tenancy.partition",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "resource.v1alpha1.ResourceService"
+        ]
+      },
+      "delete": {
+        "operationId": "ResourceService_Delete4",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/resource.v1alpha1.DeleteResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id.type.group",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "id.type.version",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "id.type.kind",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "id.tenancy.peer",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "id.name",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "id.tenancy.namespace",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "id.tenancy.partition",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "resource.v1alpha1.ResourceService"
+        ]
+      }
+    },
+    "/v2/resource/{id.type.group}/{id.type.version}/{id.type.kind}/peer/{id.tenancy.peer}/name/{id.name}/watch": {
+      "get": {
+        "operationId": "ResourceService_Watch4",
+        "responses": {
+          "200": {
+            "description": "A successful response.(streaming responses)",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "result": {
+                  "$ref": "#/definitions/resource.v1alpha1.WatchResponse"
+                },
+                "error": {
+                  "$ref": "#/definitions/google.rpc.Status"
+                }
+              },
+              "title": "Stream result of resource.v1alpha1.WatchResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id.type.group",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "id.type.version",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "id.type.kind",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "id.tenancy.peer",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "id.name",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "id.tenancy.namespace",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "id.tenancy.partition",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "resource.v1alpha1.ResourceService"
+        ]
+      }
+    },
+    "/v2/resource/{id.type.group}/{id.type.version}/{id.type.kind}/peer/{id.tenancy.peer}/namespace/{id.tenancy.namespace}/name/{id.name}": {
+      "get": {
+        "operationId": "ResourceService_Read7",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/resource.v1alpha1.ReadResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id.type.group",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "id.type.version",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "id.type.kind",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "id.tenancy.peer",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "id.tenancy.namespace",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "id.name",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "id.tenancy.partition",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "resource.v1alpha1.ResourceService"
+        ]
+      },
+      "delete": {
+        "operationId": "ResourceService_Delete7",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/resource.v1alpha1.DeleteResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id.type.group",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "id.type.version",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "id.type.kind",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "id.tenancy.peer",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "id.tenancy.namespace",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "id.name",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "id.tenancy.partition",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "resource.v1alpha1.ResourceService"
+        ]
+      }
+    },
+    "/v2/resource/{id.type.group}/{id.type.version}/{id.type.kind}/peer/{id.tenancy.peer}/namespace/{id.tenancy.namespace}/name/{id.name}/watch": {
+      "get": {
+        "operationId": "ResourceService_Watch7",
+        "responses": {
+          "200": {
+            "description": "A successful response.(streaming responses)",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "result": {
+                  "$ref": "#/definitions/resource.v1alpha1.WatchResponse"
+                },
+                "error": {
+                  "$ref": "#/definitions/google.rpc.Status"
+                }
+              },
+              "title": "Stream result of resource.v1alpha1.WatchResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id.type.group",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "id.type.version",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "id.type.kind",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "id.tenancy.peer",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "id.tenancy.namespace",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "id.name",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "id.tenancy.partition",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "resource.v1alpha1.ResourceService"
+        ]
+      }
+    },
+    "/v2/resource/{id.type.group}/{id.type.version}/{id.type.kind}/peer/{id.tenancy.peer}/namespace/{id.tenancy.namespace}/watch": {
+      "get": {
+        "operationId": "ResourceService_Watch15",
+        "responses": {
+          "200": {
+            "description": "A successful response.(streaming responses)",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "result": {
+                  "$ref": "#/definitions/resource.v1alpha1.WatchResponse"
+                },
+                "error": {
+                  "$ref": "#/definitions/google.rpc.Status"
+                }
+              },
+              "title": "Stream result of resource.v1alpha1.WatchResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id.type.group",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "id.type.version",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "id.type.kind",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "id.tenancy.peer",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "id.tenancy.namespace",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "id.tenancy.partition",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "id.name",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "resource.v1alpha1.ResourceService"
+        ]
+      }
+    },
+    "/v2/resource/{id.type.group}/{id.type.version}/{id.type.kind}/peer/{id.tenancy.peer}/watch": {
+      "get": {
+        "operationId": "ResourceService_Watch12",
+        "responses": {
+          "200": {
+            "description": "A successful response.(streaming responses)",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "result": {
+                  "$ref": "#/definitions/resource.v1alpha1.WatchResponse"
+                },
+                "error": {
+                  "$ref": "#/definitions/google.rpc.Status"
+                }
+              },
+              "title": "Stream result of resource.v1alpha1.WatchResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id.type.group",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "id.type.version",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "id.type.kind",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "id.tenancy.peer",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "id.tenancy.namespace",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "id.tenancy.partition",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "id.name",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "resource.v1alpha1.ResourceService"
+        ]
+      }
+    },
+    "/v2/resource/{id.type.group}/{id.type.version}/{id.type.kind}/watch": {
+      "get": {
+        "operationId": "ResourceService_Watch9",
+        "responses": {
+          "200": {
+            "description": "A successful response.(streaming responses)",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "result": {
+                  "$ref": "#/definitions/resource.v1alpha1.WatchResponse"
+                },
+                "error": {
+                  "$ref": "#/definitions/google.rpc.Status"
+                }
+              },
+              "title": "Stream result of resource.v1alpha1.WatchResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id.type.group",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "id.type.version",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "id.type.kind",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "id.tenancy.namespace",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "id.tenancy.peer",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "id.tenancy.partition",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "id.name",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "resource.v1alpha1.ResourceService"
+        ]
+      }
+    },
+    "/v2/resource/{resource.id.type.group}/{resource.id.type.version}/{resource.id.type.kind}/name/{resource.id.name}": {
+      "put": {
+        "operationId": "ResourceService_Write",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/resource.v1alpha1.WriteResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "resource.id.type.group",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "resource.id.type.version",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "resource.id.type.kind",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "resource.id.name",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "resource",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "object",
+                  "properties": {
+                    "type": {
+                      "type": "object"
+                    },
+                    "tenancy": {
+                      "$ref": "#/definitions/resource.v1alpha1.ResourceTenancy"
+                    }
+                  }
+                },
+                "data": {
+                  "type": "integer",
+                  "format": "int32"
+                }
+              }
+            }
+          }
+        ],
+        "tags": [
+          "resource.v1alpha1.ResourceService"
+        ]
+      }
+    },
+    "/v2/resource/{resource.id.type.group}/{resource.id.type.version}/{resource.id.type.kind}/namespace/{resource.id.tenancy.namespace}/name/{resource.id.name}": {
+      "put": {
+        "operationId": "ResourceService_Write3",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/resource.v1alpha1.WriteResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "resource.id.type.group",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "resource.id.type.version",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "resource.id.type.kind",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "resource.id.tenancy.namespace",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "resource.id.name",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "resource",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "object",
+                  "properties": {
+                    "type": {
+                      "type": "object"
+                    },
+                    "tenancy": {
+                      "type": "object",
+                      "properties": {
+                        "peer": {
+                          "type": "string"
+                        },
+                        "partition": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  }
+                },
+                "data": {
+                  "type": "integer",
+                  "format": "int32"
+                }
+              }
+            }
+          }
+        ],
+        "tags": [
+          "resource.v1alpha1.ResourceService"
+        ]
+      }
+    },
+    "/v2/resource/{resource.id.type.group}/{resource.id.type.version}/{resource.id.type.kind}/partition/{resource.id.tenancy.partition}/name/{resource.id.name}": {
+      "put": {
+        "operationId": "ResourceService_Write2",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/resource.v1alpha1.WriteResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "resource.id.type.group",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "resource.id.type.version",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "resource.id.type.kind",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "resource.id.tenancy.partition",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "resource.id.name",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "resource",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "object",
+                  "properties": {
+                    "type": {
+                      "type": "object"
+                    },
+                    "tenancy": {
+                      "type": "object",
+                      "properties": {
+                        "namespace": {
+                          "type": "string"
+                        },
+                        "peer": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  }
+                },
+                "data": {
+                  "type": "integer",
+                  "format": "int32"
+                }
+              }
+            }
+          }
+        ],
+        "tags": [
+          "resource.v1alpha1.ResourceService"
+        ]
+      }
+    },
+    "/v2/resource/{resource.id.type.group}/{resource.id.type.version}/{resource.id.type.kind}/partition/{resource.id.tenancy.partition}/namespace/{resource.id.tenancy.namespace}/name/{resource.id.name}": {
+      "put": {
+        "operationId": "ResourceService_Write5",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/resource.v1alpha1.WriteResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "resource.id.type.group",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "resource.id.type.version",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "resource.id.type.kind",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "resource.id.tenancy.partition",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "resource.id.tenancy.namespace",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "resource.id.name",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "resource",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "object",
+                  "properties": {
+                    "type": {
+                      "type": "object"
+                    },
+                    "tenancy": {
+                      "type": "object",
+                      "properties": {
+                        "peer": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  }
+                },
+                "data": {
+                  "type": "integer",
+                  "format": "int32"
+                }
+              }
+            }
+          }
+        ],
+        "tags": [
+          "resource.v1alpha1.ResourceService"
+        ]
+      }
+    },
+    "/v2/resource/{resource.id.type.group}/{resource.id.type.version}/{resource.id.type.kind}/partition/{resource.id.tenancy.partition}/peer/{resource.id.tenancy.peer}/name/{resource.id.name}": {
+      "put": {
+        "operationId": "ResourceService_Write6",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/resource.v1alpha1.WriteResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "resource.id.type.group",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "resource.id.type.version",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "resource.id.type.kind",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "resource.id.tenancy.partition",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "resource.id.tenancy.peer",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "resource.id.name",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "resource",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "object",
+                  "properties": {
+                    "type": {
+                      "type": "object"
+                    },
+                    "tenancy": {
+                      "type": "object",
+                      "properties": {
+                        "namespace": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  }
+                },
+                "data": {
+                  "type": "integer",
+                  "format": "int32"
+                }
+              }
+            }
+          }
+        ],
+        "tags": [
+          "resource.v1alpha1.ResourceService"
+        ]
+      }
+    },
+    "/v2/resource/{resource.id.type.group}/{resource.id.type.version}/{resource.id.type.kind}/partition/{resource.id.tenancy.partition}/peer/{resource.id.tenancy.peer}/namespace/{resource.id.tenancy.namespace}/name/{resource.id.name}": {
+      "put": {
+        "operationId": "ResourceService_Write8",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/resource.v1alpha1.WriteResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "resource.id.type.group",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "resource.id.type.version",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "resource.id.type.kind",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "resource.id.tenancy.partition",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "resource.id.tenancy.peer",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "resource.id.tenancy.namespace",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "resource.id.name",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "resource",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "object",
+                  "properties": {
+                    "type": {
+                      "type": "object"
+                    },
+                    "tenancy": {
+                      "type": "object"
+                    }
+                  }
+                },
+                "data": {
+                  "type": "integer",
+                  "format": "int32"
+                }
+              }
+            }
+          }
+        ],
+        "tags": [
+          "resource.v1alpha1.ResourceService"
+        ]
+      }
+    },
+    "/v2/resource/{resource.id.type.group}/{resource.id.type.version}/{resource.id.type.kind}/peer/{resource.id.tenancy.peer}/name/{resource.id.name}": {
+      "put": {
+        "operationId": "ResourceService_Write4",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/resource.v1alpha1.WriteResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "resource.id.type.group",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "resource.id.type.version",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "resource.id.type.kind",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "resource.id.tenancy.peer",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "resource.id.name",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "resource",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "object",
+                  "properties": {
+                    "type": {
+                      "type": "object"
+                    },
+                    "tenancy": {
+                      "type": "object",
+                      "properties": {
+                        "namespace": {
+                          "type": "string"
+                        },
+                        "partition": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  }
+                },
+                "data": {
+                  "type": "integer",
+                  "format": "int32"
+                }
+              }
+            }
+          }
+        ],
+        "tags": [
+          "resource.v1alpha1.ResourceService"
+        ]
+      }
+    },
+    "/v2/resource/{resource.id.type.group}/{resource.id.type.version}/{resource.id.type.kind}/peer/{resource.id.tenancy.peer}/namespace/{resource.id.tenancy.namespace}/name/{resource.id.name}": {
+      "put": {
+        "operationId": "ResourceService_Write7",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/resource.v1alpha1.WriteResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "resource.id.type.group",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "resource.id.type.version",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "resource.id.type.kind",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "resource.id.tenancy.peer",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "resource.id.tenancy.namespace",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "resource.id.name",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "resource",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "object",
+                  "properties": {
+                    "type": {
+                      "type": "object"
+                    },
+                    "tenancy": {
+                      "type": "object",
+                      "properties": {
+                        "partition": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  }
+                },
+                "data": {
+                  "type": "integer",
+                  "format": "int32"
+                }
+              }
+            }
+          }
+        ],
+        "tags": [
+          "resource.v1alpha1.ResourceService"
+        ]
+      }
+    },
+    "/v2/resource/{type.group}/{type.version}/{type.kind}": {
+      "get": {
+        "operationId": "ResourceService_List",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/resource.v1alpha1.ListResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "type.group",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "type.version",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "type.kind",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "tenancy.namespace",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "tenancy.peer",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "tenancy.partition",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "resource.v1alpha1.ResourceService"
+        ]
+      }
+    },
+    "/v2/resource/{type.group}/{type.version}/{type.kind}/namespace/{tenancy.namespace}": {
+      "get": {
+        "operationId": "ResourceService_List3",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/resource.v1alpha1.ListResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "type.group",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "type.version",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "type.kind",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "tenancy.namespace",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "tenancy.peer",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "tenancy.partition",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "resource.v1alpha1.ResourceService"
+        ]
+      }
+    },
+    "/v2/resource/{type.group}/{type.version}/{type.kind}/partition/{tenancy.partition}": {
+      "get": {
+        "operationId": "ResourceService_List2",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/resource.v1alpha1.ListResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "type.group",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "type.version",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "type.kind",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "tenancy.partition",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "tenancy.namespace",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "tenancy.peer",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "resource.v1alpha1.ResourceService"
+        ]
+      }
+    },
+    "/v2/resource/{type.group}/{type.version}/{type.kind}/partition/{tenancy.partition}/namespace/{tenancy.namespace}": {
+      "get": {
+        "operationId": "ResourceService_List5",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/resource.v1alpha1.ListResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "type.group",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "type.version",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "type.kind",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "tenancy.partition",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "tenancy.namespace",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "tenancy.peer",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "resource.v1alpha1.ResourceService"
+        ]
+      }
+    },
+    "/v2/resource/{type.group}/{type.version}/{type.kind}/partition/{tenancy.partition}/peer/{tenancy.peer}": {
+      "get": {
+        "operationId": "ResourceService_List6",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/resource.v1alpha1.ListResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "type.group",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "type.version",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "type.kind",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "tenancy.partition",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "tenancy.peer",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "tenancy.namespace",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "resource.v1alpha1.ResourceService"
+        ]
+      }
+    },
+    "/v2/resource/{type.group}/{type.version}/{type.kind}/partition/{tenancy.partition}/peer/{tenancy.peer}/namespace/{tenancy.namespace}": {
+      "get": {
+        "operationId": "ResourceService_List8",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/resource.v1alpha1.ListResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "type.group",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "type.version",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "type.kind",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "tenancy.partition",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "tenancy.peer",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "tenancy.namespace",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "resource.v1alpha1.ResourceService"
+        ]
+      }
+    },
+    "/v2/resource/{type.group}/{type.version}/{type.kind}/peer/{tenancy.peer}": {
+      "get": {
+        "operationId": "ResourceService_List4",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/resource.v1alpha1.ListResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "type.group",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "type.version",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "type.kind",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "tenancy.peer",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "tenancy.namespace",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "tenancy.partition",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "resource.v1alpha1.ResourceService"
+        ]
+      }
+    },
+    "/v2/resource/{type.group}/{type.version}/{type.kind}/peer/{tenancy.peer}/namespace/{tenancy.namespace}": {
+      "get": {
+        "operationId": "ResourceService_List7",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/resource.v1alpha1.ListResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "type.group",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "type.version",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "type.kind",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "tenancy.peer",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "tenancy.namespace",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "tenancy.partition",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "resource.v1alpha1.ResourceService"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "google.protobuf.Any": {
+      "type": "object",
+      "properties": {
+        "@type": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": {}
+    },
+    "google.rpc.Status": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        },
+        "details": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/google.protobuf.Any"
+          }
+        }
+      }
+    },
+    "resource.v1alpha1.DeleteResponse": {
+      "type": "object"
+    },
+    "resource.v1alpha1.ListResponse": {
+      "type": "object",
+      "properties": {
+        "resources": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/resource.v1alpha1.Resource"
+          }
+        }
+      }
+    },
+    "resource.v1alpha1.ReadResponse": {
+      "type": "object",
+      "properties": {
+        "resource": {
+          "$ref": "#/definitions/resource.v1alpha1.Resource"
+        }
+      }
+    },
+    "resource.v1alpha1.Resource": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "$ref": "#/definitions/resource.v1alpha1.ResourceID"
+        },
+        "data": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "resource.v1alpha1.ResourceID": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "$ref": "#/definitions/resource.v1alpha1.ResourceType"
+        },
+        "tenancy": {
+          "$ref": "#/definitions/resource.v1alpha1.ResourceTenancy"
+        },
+        "name": {
+          "type": "string"
+        }
+      }
+    },
+    "resource.v1alpha1.ResourceTenancy": {
+      "type": "object",
+      "properties": {
+        "namespace": {
+          "type": "string"
+        },
+        "peer": {
+          "type": "string"
+        },
+        "partition": {
+          "type": "string"
+        }
+      }
+    },
+    "resource.v1alpha1.ResourceType": {
+      "type": "object",
+      "properties": {
+        "group": {
+          "type": "string"
+        },
+        "version": {
+          "type": "string"
+        },
+        "kind": {
+          "type": "string"
+        }
+      }
+    },
+    "resource.v1alpha1.WatchResponse": {
+      "type": "object",
+      "properties": {
+        "operation": {
+          "$ref": "#/definitions/resource.v1alpha1.WatchResponse.Operation"
+        },
+        "resource": {
+          "$ref": "#/definitions/resource.v1alpha1.Resource"
+        }
+      }
+    },
+    "resource.v1alpha1.WatchResponse.Operation": {
+      "type": "string",
+      "enum": [
+        "OPERATION_UNSPECIFIED",
+        "OPERATION_UPSERT",
+        "OPERATION_DELETE"
+      ],
+      "default": "OPERATION_UNSPECIFIED"
+    },
+    "resource.v1alpha1.WriteResponse": {
+      "type": "object",
+      "properties": {
+        "resource": {
+          "$ref": "#/definitions/resource.v1alpha1.Resource"
+        }
+      }
+    }
+  }
+}

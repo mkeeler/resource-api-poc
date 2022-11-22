@@ -2,9 +2,9 @@
 // versions:
 // - protoc-gen-go-grpc v1.2.0
 // - protoc             (unknown)
-// source: resource/resource.proto
+// source: resource/v1alpha1/resource.proto
 
-package resource
+package resourcev1alpha1
 
 import (
 	context "context"
@@ -26,6 +26,7 @@ type ResourceServiceClient interface {
 	Write(ctx context.Context, in *WriteRequest, opts ...grpc.CallOption) (*WriteResponse, error)
 	List(ctx context.Context, in *ListRequest, opts ...grpc.CallOption) (*ListResponse, error)
 	Delete(ctx context.Context, in *DeleteRequest, opts ...grpc.CallOption) (*DeleteResponse, error)
+	Watch(ctx context.Context, in *WatchRequest, opts ...grpc.CallOption) (ResourceService_WatchClient, error)
 }
 
 type resourceServiceClient struct {
@@ -38,7 +39,7 @@ func NewResourceServiceClient(cc grpc.ClientConnInterface) ResourceServiceClient
 
 func (c *resourceServiceClient) Read(ctx context.Context, in *ReadRequest, opts ...grpc.CallOption) (*ReadResponse, error) {
 	out := new(ReadResponse)
-	err := c.cc.Invoke(ctx, "/resource.ResourceService/Read", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/resource.v1alpha1.ResourceService/Read", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -47,7 +48,7 @@ func (c *resourceServiceClient) Read(ctx context.Context, in *ReadRequest, opts 
 
 func (c *resourceServiceClient) Write(ctx context.Context, in *WriteRequest, opts ...grpc.CallOption) (*WriteResponse, error) {
 	out := new(WriteResponse)
-	err := c.cc.Invoke(ctx, "/resource.ResourceService/Write", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/resource.v1alpha1.ResourceService/Write", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -56,7 +57,7 @@ func (c *resourceServiceClient) Write(ctx context.Context, in *WriteRequest, opt
 
 func (c *resourceServiceClient) List(ctx context.Context, in *ListRequest, opts ...grpc.CallOption) (*ListResponse, error) {
 	out := new(ListResponse)
-	err := c.cc.Invoke(ctx, "/resource.ResourceService/List", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/resource.v1alpha1.ResourceService/List", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -65,11 +66,43 @@ func (c *resourceServiceClient) List(ctx context.Context, in *ListRequest, opts 
 
 func (c *resourceServiceClient) Delete(ctx context.Context, in *DeleteRequest, opts ...grpc.CallOption) (*DeleteResponse, error) {
 	out := new(DeleteResponse)
-	err := c.cc.Invoke(ctx, "/resource.ResourceService/Delete", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/resource.v1alpha1.ResourceService/Delete", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
+}
+
+func (c *resourceServiceClient) Watch(ctx context.Context, in *WatchRequest, opts ...grpc.CallOption) (ResourceService_WatchClient, error) {
+	stream, err := c.cc.NewStream(ctx, &ResourceService_ServiceDesc.Streams[0], "/resource.v1alpha1.ResourceService/Watch", opts...)
+	if err != nil {
+		return nil, err
+	}
+	x := &resourceServiceWatchClient{stream}
+	if err := x.ClientStream.SendMsg(in); err != nil {
+		return nil, err
+	}
+	if err := x.ClientStream.CloseSend(); err != nil {
+		return nil, err
+	}
+	return x, nil
+}
+
+type ResourceService_WatchClient interface {
+	Recv() (*WatchResponse, error)
+	grpc.ClientStream
+}
+
+type resourceServiceWatchClient struct {
+	grpc.ClientStream
+}
+
+func (x *resourceServiceWatchClient) Recv() (*WatchResponse, error) {
+	m := new(WatchResponse)
+	if err := x.ClientStream.RecvMsg(m); err != nil {
+		return nil, err
+	}
+	return m, nil
 }
 
 // ResourceServiceServer is the server API for ResourceService service.
@@ -80,6 +113,7 @@ type ResourceServiceServer interface {
 	Write(context.Context, *WriteRequest) (*WriteResponse, error)
 	List(context.Context, *ListRequest) (*ListResponse, error)
 	Delete(context.Context, *DeleteRequest) (*DeleteResponse, error)
+	Watch(*WatchRequest, ResourceService_WatchServer) error
 }
 
 // UnimplementedResourceServiceServer should be embedded to have forward compatible implementations.
@@ -97,6 +131,9 @@ func (UnimplementedResourceServiceServer) List(context.Context, *ListRequest) (*
 }
 func (UnimplementedResourceServiceServer) Delete(context.Context, *DeleteRequest) (*DeleteResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Delete not implemented")
+}
+func (UnimplementedResourceServiceServer) Watch(*WatchRequest, ResourceService_WatchServer) error {
+	return status.Errorf(codes.Unimplemented, "method Watch not implemented")
 }
 
 // UnsafeResourceServiceServer may be embedded to opt out of forward compatibility for this service.
@@ -120,7 +157,7 @@ func _ResourceService_Read_Handler(srv interface{}, ctx context.Context, dec fun
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/resource.ResourceService/Read",
+		FullMethod: "/resource.v1alpha1.ResourceService/Read",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(ResourceServiceServer).Read(ctx, req.(*ReadRequest))
@@ -138,7 +175,7 @@ func _ResourceService_Write_Handler(srv interface{}, ctx context.Context, dec fu
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/resource.ResourceService/Write",
+		FullMethod: "/resource.v1alpha1.ResourceService/Write",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(ResourceServiceServer).Write(ctx, req.(*WriteRequest))
@@ -156,7 +193,7 @@ func _ResourceService_List_Handler(srv interface{}, ctx context.Context, dec fun
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/resource.ResourceService/List",
+		FullMethod: "/resource.v1alpha1.ResourceService/List",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(ResourceServiceServer).List(ctx, req.(*ListRequest))
@@ -174,7 +211,7 @@ func _ResourceService_Delete_Handler(srv interface{}, ctx context.Context, dec f
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/resource.ResourceService/Delete",
+		FullMethod: "/resource.v1alpha1.ResourceService/Delete",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(ResourceServiceServer).Delete(ctx, req.(*DeleteRequest))
@@ -182,11 +219,32 @@ func _ResourceService_Delete_Handler(srv interface{}, ctx context.Context, dec f
 	return interceptor(ctx, in, info, handler)
 }
 
+func _ResourceService_Watch_Handler(srv interface{}, stream grpc.ServerStream) error {
+	m := new(WatchRequest)
+	if err := stream.RecvMsg(m); err != nil {
+		return err
+	}
+	return srv.(ResourceServiceServer).Watch(m, &resourceServiceWatchServer{stream})
+}
+
+type ResourceService_WatchServer interface {
+	Send(*WatchResponse) error
+	grpc.ServerStream
+}
+
+type resourceServiceWatchServer struct {
+	grpc.ServerStream
+}
+
+func (x *resourceServiceWatchServer) Send(m *WatchResponse) error {
+	return x.ServerStream.SendMsg(m)
+}
+
 // ResourceService_ServiceDesc is the grpc.ServiceDesc for ResourceService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var ResourceService_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "resource.ResourceService",
+	ServiceName: "resource.v1alpha1.ResourceService",
 	HandlerType: (*ResourceServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
@@ -206,6 +264,12 @@ var ResourceService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _ResourceService_Delete_Handler,
 		},
 	},
-	Streams:  []grpc.StreamDesc{},
-	Metadata: "resource/resource.proto",
+	Streams: []grpc.StreamDesc{
+		{
+			StreamName:    "Watch",
+			Handler:       _ResourceService_Watch_Handler,
+			ServerStreams: true,
+		},
+	},
+	Metadata: "resource/v1alpha1/resource.proto",
 }

@@ -2,9 +2,9 @@
 // versions:
 // - protoc-gen-go-grpc v1.2.0
 // - protoc             (unknown)
-// source: data/data.proto
+// source: data/v1alpha1/data.proto
 
-package data
+package datav1alpha1
 
 import (
 	context "context"
@@ -35,7 +35,7 @@ func NewDataServiceClient(cc grpc.ClientConnInterface) DataServiceClient {
 
 func (c *dataServiceClient) SetData(ctx context.Context, in *SetDataRequest, opts ...grpc.CallOption) (*SetDataResponse, error) {
 	out := new(SetDataResponse)
-	err := c.cc.Invoke(ctx, "/data.DataService/SetData", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/data.v1alpha1.DataService/SetData", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -78,7 +78,7 @@ func _DataService_SetData_Handler(srv interface{}, ctx context.Context, dec func
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/data.DataService/SetData",
+		FullMethod: "/data.v1alpha1.DataService/SetData",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(DataServiceServer).SetData(ctx, req.(*SetDataRequest))
@@ -90,7 +90,7 @@ func _DataService_SetData_Handler(srv interface{}, ctx context.Context, dec func
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var DataService_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "data.DataService",
+	ServiceName: "data.v1alpha1.DataService",
 	HandlerType: (*DataServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
@@ -99,5 +99,5 @@ var DataService_ServiceDesc = grpc.ServiceDesc{
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
-	Metadata: "data/data.proto",
+	Metadata: "data/v1alpha1/data.proto",
 }

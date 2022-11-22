@@ -1,9 +1,9 @@
 syntax = "proto3";
 
-package data;
+package data.v1alpha1;
 
 import "google/api/annotations.proto";
-import "resource/resource.proto";
+import "resource/v1alpha1/resource.proto";
 import "validate/validate.proto";
 
 message Data {
@@ -16,7 +16,7 @@ message SetDataRequest {
 }
 
 message SetDataResponse {
-  resource.Resource resource = 1;
+  resource.v1alpha1.Resource resource = 1;
 }
 
 service DataService {

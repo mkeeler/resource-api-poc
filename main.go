@@ -12,14 +12,14 @@ import (
 
 	"github.com/grpc-ecosystem/grpc-gateway/runtime"
 	grpcpipe "github.com/mkeeler/resource-api-poc/pkg/grpc-pipe"
-	datapb "github.com/mkeeler/resource-api-poc/proto/data"
-	resourcepb "github.com/mkeeler/resource-api-poc/proto/resource"
+	datapb "github.com/mkeeler/resource-api-poc/proto/data/v1alpha1"
+	resourcepb "github.com/mkeeler/resource-api-poc/proto/resource/v1alpha1"
 )
 
 type resourceType struct {
 	group   string
 	version string
-	rtype   string
+	kind    string
 }
 
 type server struct {
@@ -33,7 +33,7 @@ func NewServer() *server {
 	}
 }
 
-var dataType = resourceType{group: "g", version: "1", rtype: "t"}
+var dataType = resourceType{group: "g", version: "1", kind: "t"}
 
 func (s *server) SetData(ctx context.Context, req *datapb.SetDataRequest) (*datapb.SetDataResponse, error) {
 	if err := req.ValidateAll(); err != nil {
@@ -53,7 +53,7 @@ func (s *server) SetData(ctx context.Context, req *datapb.SetDataRequest) (*data
 			Type: &resourcepb.ResourceType{
 				Group:   dataType.group,
 				Version: dataType.version,
-				Type:    dataType.rtype,
+				Kind:    dataType.kind,
 			},
 			Name: req.GetName(),
 		},
@@ -70,7 +70,7 @@ func (s *server) Read(ctx context.Context, req *resourcepb.ReadRequest) (*resour
 		return nil, err
 	}
 
-	t := resourceType{group: req.GetId().GetType().Group, version: req.GetId().GetType().GetVersion(), rtype: req.GetId().GetType().GetType()}
+	t := resourceType{group: req.GetId().GetType().Group, version: req.GetId().GetType().GetVersion(), kind: req.GetId().GetType().GetKind()}
 	s.mu.RLock()
 	defer s.mu.RUnlock()
 	return &resourcepb.ReadResponse{Resource: s.data[t][req.GetId().GetName()]}, nil
@@ -81,7 +81,7 @@ func (s *server) Write(ctx context.Context, req *resourcepb.WriteRequest) (*reso
 		return nil, err
 	}
 
-	t := resourceType{group: req.GetResource().GetId().GetType().Group, version: req.GetResource().GetId().GetType().GetVersion(), rtype: req.GetResource().GetId().GetType().GetType()}
+	t := resourceType{group: req.GetResource().GetId().GetType().Group, version: req.GetResource().GetId().GetType().GetVersion(), kind: req.GetResource().GetId().GetType().GetKind()}
 	s.mu.Lock()
 	defer s.mu.Unlock()
 	tstore, ok := s.data[t]
@@ -99,7 +99,7 @@ func (s *server) List(ctx context.Context, req *resourcepb.ListRequest) (*resour
 		return nil, err
 	}
 
-	t := resourceType{group: req.GetType().Group, version: req.GetType().GetVersion(), rtype: req.GetType().GetType()}
+	t := resourceType{group: req.GetType().Group, version: req.GetType().GetVersion(), kind: req.GetType().GetKind()}
 	s.mu.RLock()
 	defer s.mu.RUnlock()
 	var resources []*resourcepb.Resource
@@ -115,7 +115,7 @@ func (s *server) Delete(ctx context.Context, req *resourcepb.DeleteRequest) (*re
 		return nil, err
 	}
 
-	t := resourceType{group: req.GetId().GetType().Group, version: req.GetId().GetType().GetVersion(), rtype: req.GetId().GetType().GetType()}
+	t := resourceType{group: req.GetId().GetType().Group, version: req.GetId().GetType().GetVersion(), kind: req.GetId().GetType().GetKind()}
 	s.mu.RLock()
 	defer s.mu.RUnlock()
 	tstore, ok := s.data[t]
@@ -134,6 +134,29 @@ func (s *server) Delete(ctx context.Context, req *resourcepb.DeleteRequest) (*re
 		delete(s.data, t)
 	}
 	return &resourcepb.DeleteResponse{}, nil
+}
+
+func (s *server) Watch(req *resourcepb.WatchRequest, srv resourcepb.ResourceService_WatchServer) error {
+	if err := req.ValidateAll(); err != nil {
+		return err
+	}
+
+	t := resourceType{group: req.GetId().GetType().Group, version: req.GetId().GetType().GetVersion(), kind: req.GetId().GetType().GetKind()}
+	s.mu.RLock()
+	defer s.mu.RUnlock()
+	tstore, ok := s.data[t]
+	if !ok {
+		return nil
+	}
+
+	for _, rsc := range tstore {
+		srv.Send(&resourcepb.WatchResponse{
+			Operation: resourcepb.WatchResponse_OPERATION_UPSERT,
+			Resource:  rsc,
+		})
+	}
+
+	return nil
 }
 
 func main() {

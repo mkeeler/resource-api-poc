@@ -1,0 +1,288 @@
+syntax = "proto3";
+
+package resource.v1alpha1;
+
+import "google/api/annotations.proto";
+import "validate/validate.proto";
+
+service ResourceService {
+  rpc Read(ReadRequest) returns (ReadResponse) {
+    option (google.api.http) = {
+      // named
+      get: "/v2/resource/{id.type.group}/{id.type.version}/{id.type.kind}/name/{id.name}"
+      // partitioned named
+      additional_bindings {
+        get: "/v2/resource/{id.type.group}/{id.type.version}/{id.type.kind}/partition/{id.tenancy.partition}/name/{id.name}"
+      }
+      // namespaced named
+      additional_bindings {
+        get: "/v2/resource/{id.type.group}/{id.type.version}/{id.type.kind}/namespace/{id.tenancy.namespace}/name/{id.name}"
+      }
+      // peered named
+      additional_bindings {
+        get: "/v2/resource/{id.type.group}/{id.type.version}/{id.type.kind}/peer/{id.tenancy.peer}/name/{id.name}"
+      }
+      // partitioned namespaced named
+      additional_bindings {
+        get: "/v2/resource/{id.type.group}/{id.type.version}/{id.type.kind}/partition/{id.tenancy.partition}/namespace/{id.tenancy.namespace}/name/{id.name}"
+      }
+      // partitioned peered named
+      additional_bindings {
+        get: "/v2/resource/{id.type.group}/{id.type.version}/{id.type.kind}/partition/{id.tenancy.partition}/peer/{id.tenancy.peer}/name/{id.name}"
+      }
+      // peered namespaced named
+      additional_bindings {
+        get: "/v2/resource/{id.type.group}/{id.type.version}/{id.type.kind}/peer/{id.tenancy.peer}/namespace/{id.tenancy.namespace}/name/{id.name}"
+      }
+      // partitioned peered namespaced named
+      additional_bindings {
+        get: "/v2/resource/{id.type.group}/{id.type.version}/{id.type.kind}/partition/{id.tenancy.partition}/peer/{id.tenancy.peer}/namespace/{id.tenancy.namespace}/name/{id.name}"
+      }
+    };
+  }
+  rpc Write(WriteRequest) returns (WriteResponse) {
+    option (google.api.http) = {
+      // named
+      put: "/v2/resource/{resource.id.type.group}/{resource.id.type.version}/{resource.id.type.kind}/name/{resource.id.name}"
+      body: "resource"
+      // partitioned named
+      additional_bindings {
+        put: "/v2/resource/{resource.id.type.group}/{resource.id.type.version}/{resource.id.type.kind}/partition/{resource.id.tenancy.partition}/name/{resource.id.name}"
+        body: "resource"
+      }
+      // namespaced named
+      additional_bindings {
+        put: "/v2/resource/{resource.id.type.group}/{resource.id.type.version}/{resource.id.type.kind}/namespace/{resource.id.tenancy.namespace}/name/{resource.id.name}"
+        body: "resource"
+      }
+      // peered named
+      additional_bindings {
+        put: "/v2/resource/{resource.id.type.group}/{resource.id.type.version}/{resource.id.type.kind}/peer/{resource.id.tenancy.peer}/name/{resource.id.name}"
+        body: "resource"
+      }
+      // partitioned namespaced named
+      additional_bindings {
+        put: "/v2/resource/{resource.id.type.group}/{resource.id.type.version}/{resource.id.type.kind}/partition/{resource.id.tenancy.partition}/namespace/{resource.id.tenancy.namespace}/name/{resource.id.name}"
+        body: "resource"
+      }
+      // partitioned peered named
+      additional_bindings {
+        put: "/v2/resource/{resource.id.type.group}/{resource.id.type.version}/{resource.id.type.kind}/partition/{resource.id.tenancy.partition}/peer/{resource.id.tenancy.peer}/name/{resource.id.name}"
+        body: "resource"
+      }
+      // peered namespaced named
+      additional_bindings {
+        put: "/v2/resource/{resource.id.type.group}/{resource.id.type.version}/{resource.id.type.kind}/peer/{resource.id.tenancy.peer}/namespace/{resource.id.tenancy.namespace}/name/{resource.id.name}"
+        body: "resource"
+      }
+      // partitioned peered namespaced named
+      additional_bindings {
+        put: "/v2/resource/{resource.id.type.group}/{resource.id.type.version}/{resource.id.type.kind}/partition/{resource.id.tenancy.partition}/peer/{resource.id.tenancy.peer}/namespace/{resource.id.tenancy.namespace}/name/{resource.id.name}"
+        body: "resource"
+      }
+    };
+  }
+  rpc List(ListRequest) returns (ListResponse) {
+    option (google.api.http) = {
+      // named
+      get: "/v2/resource/{type.group}/{type.version}/{type.kind}"
+      // partitioned named
+      additional_bindings {
+        get: "/v2/resource/{type.group}/{type.version}/{type.kind}/partition/{tenancy.partition}"
+      }
+      // namespaced named
+      additional_bindings {
+        get: "/v2/resource/{type.group}/{type.version}/{type.kind}/namespace/{tenancy.namespace}"
+      }
+      // peered named
+      additional_bindings {
+        get: "/v2/resource/{type.group}/{type.version}/{type.kind}/peer/{tenancy.peer}"
+      }
+      // partitioned namespaced named
+      additional_bindings {
+        get: "/v2/resource/{type.group}/{type.version}/{type.kind}/partition/{tenancy.partition}/namespace/{tenancy.namespace}"
+      }
+      // partitioned peered named
+      additional_bindings {
+        get: "/v2/resource/{type.group}/{type.version}/{type.kind}/partition/{tenancy.partition}/peer/{tenancy.peer}"
+      }
+      // peered namespaced named
+      additional_bindings {
+        get: "/v2/resource/{type.group}/{type.version}/{type.kind}/peer/{tenancy.peer}/namespace/{tenancy.namespace}"
+      }
+      // partitioned peered namespaced named
+      additional_bindings {
+        get: "/v2/resource/{type.group}/{type.version}/{type.kind}/partition/{tenancy.partition}/peer/{tenancy.peer}/namespace/{tenancy.namespace}"
+      }
+    };
+  }
+
+  rpc Delete(DeleteRequest) returns (DeleteResponse) {
+    option (google.api.http) = {
+      // named
+      delete: "/v2/resource/{id.type.group}/{id.type.version}/{id.type.kind}/name/{id.name}"
+      // partitioned named
+      additional_bindings {
+        delete: "/v2/resource/{id.type.group}/{id.type.version}/{id.type.kind}/partition/{id.tenancy.partition}/name/{id.name}"
+      }
+      // namespaced named
+      additional_bindings {
+        delete: "/v2/resource/{id.type.group}/{id.type.version}/{id.type.kind}/namespace/{id.tenancy.namespace}/name/{id.name}"
+      }
+      // peered named
+      additional_bindings {
+        delete: "/v2/resource/{id.type.group}/{id.type.version}/{id.type.kind}/peer/{id.tenancy.peer}/name/{id.name}"
+      }
+      // partitioned namespaced named
+      additional_bindings {
+        delete: "/v2/resource/{id.type.group}/{id.type.version}/{id.type.kind}/partition/{id.tenancy.partition}/namespace/{id.tenancy.namespace}/name/{id.name}"
+      }
+      // partitioned peered named
+      additional_bindings {
+        delete: "/v2/resource/{id.type.group}/{id.type.version}/{id.type.kind}/partition/{id.tenancy.partition}/peer/{id.tenancy.peer}/name/{id.name}"
+      }
+      // peered namespaced named
+      additional_bindings {
+        delete: "/v2/resource/{id.type.group}/{id.type.version}/{id.type.kind}/peer/{id.tenancy.peer}/namespace/{id.tenancy.namespace}/name/{id.name}"
+      }
+      // partitioned peered namespaced named
+      additional_bindings {
+        delete: "/v2/resource/{id.type.group}/{id.type.version}/{id.type.kind}/partition/{id.tenancy.partition}/peer/{id.tenancy.peer}/namespace/{id.tenancy.namespace}/name/{id.name}"
+      }
+    };
+  }
+
+  rpc Watch(WatchRequest) returns (stream WatchResponse) {
+    option (google.api.http) = {
+      // named
+      get: "/v2/resource/{id.type.group}/{id.type.version}/{id.type.kind}/name/{id.name}/watch"
+      // partitioned named
+      additional_bindings {
+        get: "/v2/resource/{id.type.group}/{id.type.version}/{id.type.kind}/partition/{id.tenancy.partition}/name/{id.name}/watch"
+      }
+      // namespaced named
+      additional_bindings {
+        get: "/v2/resource/{id.type.group}/{id.type.version}/{id.type.kind}/namespace/{id.tenancy.namespace}/name/{id.name}/watch"
+      }
+      // peered named
+      additional_bindings {
+        get: "/v2/resource/{id.type.group}/{id.type.version}/{id.type.kind}/peer/{id.tenancy.peer}/name/{id.name}/watch"
+      }
+      // partitioned namespaced named
+      additional_bindings {
+        get: "/v2/resource/{id.type.group}/{id.type.version}/{id.type.kind}/partition/{id.tenancy.partition}/namespace/{id.tenancy.namespace}/name/{id.name}/watch"
+      }
+      // partitioned peered named
+      additional_bindings {
+        get: "/v2/resource/{id.type.group}/{id.type.version}/{id.type.kind}/partition/{id.tenancy.partition}/peer/{id.tenancy.peer}/name/{id.name}/watch"
+      }
+      // peered namespaced named
+      additional_bindings {
+        get: "/v2/resource/{id.type.group}/{id.type.version}/{id.type.kind}/peer/{id.tenancy.peer}/namespace/{id.tenancy.namespace}/name/{id.name}/watch"
+      }
+      // partitioned peered namespaced named
+      additional_bindings {
+        get: "/v2/resource/{id.type.group}/{id.type.version}/{id.type.kind}/partition/{id.tenancy.partition}/peer/{id.tenancy.peer}/namespace/{id.tenancy.namespace}/name/{id.name}/watch"
+      }
+      additional_bindings {
+        get: "/v2/resource/{id.type.group}/{id.type.version}/{id.type.kind}/watch"
+      }
+      // partitioned named
+      additional_bindings {
+        get: "/v2/resource/{id.type.group}/{id.type.version}/{id.type.kind}/partition/{id.tenancy.partition}/watch"
+      }
+      // namespaced named
+      additional_bindings {
+        get: "/v2/resource/{id.type.group}/{id.type.version}/{id.type.kind}/namespace/{id.tenancy.namespace}/watch"
+      }
+      // peered named
+      additional_bindings {
+        get: "/v2/resource/{id.type.group}/{id.type.version}/{id.type.kind}/peer/{id.tenancy.peer}/watch"
+      }
+      // partitioned namespaced named
+      additional_bindings {
+        get: "/v2/resource/{id.type.group}/{id.type.version}/{id.type.kind}/partition/{id.tenancy.partition}/namespace/{id.tenancy.namespace}/watch"
+      }
+      // partitioned peered named
+      additional_bindings {
+        get: "/v2/resource/{id.type.group}/{id.type.version}/{id.type.kind}/partition/{id.tenancy.partition}/peer/{id.tenancy.peer}/watch"
+      }
+      // peered namespaced named
+      additional_bindings {
+        get: "/v2/resource/{id.type.group}/{id.type.version}/{id.type.kind}/peer/{id.tenancy.peer}/namespace/{id.tenancy.namespace}/watch"
+      }
+      // partitioned peered namespaced named
+      additional_bindings {
+        get: "/v2/resource/{id.type.group}/{id.type.version}/{id.type.kind}/partition/{id.tenancy.partition}/peer/{id.tenancy.peer}/namespace/{id.tenancy.namespace}/watch"
+      }
+    };
+  }
+}
+
+message ResourceType {
+  string group = 1 [(validate.rules).string.min_len = 1];
+  string version = 2 [(validate.rules).string.min_len = 1];
+  string kind = 3 [(validate.rules).string.min_len = 1];
+}
+
+message ResourceTenancy {
+  string namespace = 1;
+  string peer = 2;
+  string partition = 3;
+}
+
+message ResourceID {
+  ResourceType type = 1;
+  ResourceTenancy tenancy = 2;
+  string name = 3;
+}
+
+message Resource {
+  ResourceID id = 1;
+  int32 data = 2;
+}
+
+message ReadRequest {
+  ResourceID id = 1 [(validate.rules).message.required = true];
+}
+
+message ReadResponse {
+  Resource resource = 1;
+}
+
+message ListRequest {
+  ResourceType type = 1 [(validate.rules).message.required = true];
+  ResourceTenancy tenancy = 2;
+}
+
+message ListResponse {
+  repeated Resource resources = 1;
+}
+
+message WriteRequest {
+  Resource resource = 1 [(validate.rules).message.required = true];
+}
+
+message WriteResponse {
+  Resource resource = 1;
+}
+
+message DeleteRequest {
+  ResourceID id = 1 [(validate.rules).message.required = true];
+}
+
+message DeleteResponse {}
+
+message WatchRequest {
+  ResourceID id = 1 [(validate.rules).message.required = true];
+}
+
+message WatchResponse {
+  enum Operation {
+    OPERATION_UNSPECIFIED = 0;
+    OPERATION_UPSERT = 1;
+    OPERATION_DELETE = 2;
+  }
+  Operation operation = 1;
+  Resource resource = 2;
+}
